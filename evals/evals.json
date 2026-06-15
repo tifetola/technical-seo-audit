@@ -1,0 +1,53 @@
+{
+  "skill_name": "technical-seo-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run a full technical SEO audit for azul.com using Ahrefs. Save the report to /tmp/azul-tech-seo-audit-test.md",
+      "expected_output": "A prioritized technical SEO audit Markdown document saved to /tmp/azul-tech-seo-audit-test.md. Should include: executive summary with health score and crawl stats, P1-P4 priority sections, at least one verified finding confirmed via raw HTML (not just Ahrefs flag), a priority summary table, and a sprint plan. Issues ordered by business impact with incoming_links and traffic counts shown.",
+      "files": [],
+      "expectations": [
+        "Report is saved as a .md file at the specified path",
+        "Document includes an executive summary with health score",
+        "Document has P1 (Critical), P2 (High), P3 (Medium), P4 (Low) sections",
+        "At least one finding cites incoming_links count as justification for priority",
+        "Document includes a Priority Summary table",
+        "Document includes a Sprint Plan section",
+        "No finding uses the column name inlinks_count or organic_traffic in the text",
+        "At least one P1 finding is verified via raw HTML extraction (not just Ahrefs flag)",
+        "Effort estimates are included for each issue"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need a technical SEO audit for our site. We have an Ahrefs project set up for proposify.com. Can you run a full site health audit and give me a prioritized list of what to fix? Save it to /tmp/proposify-tech-audit.md",
+      "expected_output": "A complete technical SEO audit for proposify.com using Ahrefs Site Audit MCP. The report should use the correct Ahrefs column names, verify key findings from raw HTML, prioritize by business impact (not issue count), and produce a structured P1-P4 document with sprint plan.",
+      "files": [],
+      "expectations": [
+        "Skill uses site-audit-projects to look up the Ahrefs project for proposify.com",
+        "Skill uses site-audit-issues to pull the full issue list",
+        "Skill uses site-audit-page-explorer with incoming_links column (not inlinks_count)",
+        "Report is saved to /tmp/proposify-tech-audit.md",
+        "Report has P1-P4 priority sections",
+        "High incoming_links count or backlink count is mentioned when justifying P1 priority",
+        "Report includes specific page URLs with data, not just generic descriptions",
+        "Sprint plan is present"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can you check the technical SEO health of our site? We use Ahrefs and have a project for intercom.com. I'm particularly worried about 404 errors and noindex issues — those seem high in our dashboard. Save to /tmp/intercom-technical-seo.md",
+      "expected_output": "A technical SEO audit focused on the user's stated concerns (404s, noindex) but covering all significant issues. Should verify the noindex finding from raw HTML rather than just reporting the Ahrefs flag. 404s should be triaged by external backlink count, not just total count. Output saved to the specified path.",
+      "files": [],
+      "expectations": [
+        "Noindex finding is verified via raw HTML extraction (site-audit-page-content), not just Ahrefs flag",
+        "404 pages are shown with incoming_links and traffic data, not just URLs",
+        "Report notes which 404 pages have external backlinks (if any) as highest priority",
+        "Report addresses all significant issue types, not just 404s and noindex",
+        "Report is saved to /tmp/intercom-technical-seo.md",
+        "P1-P4 structure is used",
+        "Business impact is quantified for priority issues"
+      ]
+    }
+  ]
+}
